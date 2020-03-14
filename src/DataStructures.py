@@ -18,10 +18,15 @@ class Queue:
     ################ DESENCOLAR  #######################
     def dequeue(self):
         try:
-            return self._queue.pop()
+            if "FIFO" in self._mode:
+                cliente= self._queue.pop(0)
+                return cliente
+            elif "LIFO" in self._mode:   
+                cliente= self._queue.pop()
+                return cliente
         except:
             raise ValueError("La cola está vacía")
-        pass
+
     
     ################ OBTENER COLA  ##########################
     def get_queue(self):

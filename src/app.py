@@ -1,6 +1,6 @@
 import json
 from DataStructures import Queue
-#from sms import send
+from sms import send
 
 # there queue has to be declared globally (outside any other function)
 # that way all methods have access to it
@@ -20,7 +20,9 @@ def add(item):
     pass
 
 def dequeue():
-    eliminando=queue.dequeue()
+    cliente=queue.dequeue()
+    enviando_mensaje=send(cliente)
+    print('Le toca turno a: '+cliente)
     pass
 
 def sizequeue():
