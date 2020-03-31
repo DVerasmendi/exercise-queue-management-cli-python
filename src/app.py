@@ -13,10 +13,10 @@ def print_queue():
     print(queue.get_queue())
 
 def add(item):
-    #print(item)
-    #agregando=Queue()
     agregando=queue.enqueue(item)
-    #print(agregando)
+    size=sizeCola=queue.size()
+    size=size-1
+    print(item+", tienes: "+str(size)+" Clientes antes que tu")
     pass
 
 def dequeue():

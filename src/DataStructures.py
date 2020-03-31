@@ -56,29 +56,48 @@ class Queue:
     ################ GUARDAR EN ARCHIVO JSON COLA ############
     def save_json(self):
         cola=self._queue
+        cont=0
+        diccFIFO={}
+        for item in cola:
+            diccFIFO.update({str(cont) : str(item)})
+            cont=int(cont)
+            cont=cont+1
         
         if "FIFO" in self._mode:
             with open('clientesFIFO.json', 'w') as file:
-                json.dump(cola, file, indent=1)
-                print(cola)
+                json.dump(diccFIFO, file, indent=1)
             print('\n Archivo creado ---> '+'clientesFIFO.json')
             
         elif "LIFO" in self._mode:
-            colaLIFO=[]
+            cont=0
+            diccLIFO={}
             for item in reversed(self._queue):
-                colaLIFO.append(item)
+                diccLIFO.update({str(cont) : str(item)})
+                cont=int(cont)
+                cont=cont+1
     ################ ############### ##########################
             with open('clientesLIFO.json', 'w') as file:
-                json.dump(colaLIFO, file, indent=1)
-                print(cola)
+                json.dump(diccLIFO, file, indent=1)
             print('\n Archivo creado ---> '+'clientesLIFO.json')
     ################ LEER ARCHIVO JSON E INCORPORAR COLA  ######
     def load_json(self):
         if "FIFO" in self._mode:
+            diccFIFO={}
             with open('clientesFIFO.json') as file:
-                self._queue = json.load(file)
+                diccFIFO = json.load(file)
+                print(diccFIFO)
+                for item in diccFIFO:
+                    self._queue.append(diccFIFO[item])
                 print('\n Archivo CARGADO FIFO---> '+'clientesFIFO.json')
         elif "LIFO" in self._mode:
+            diccLIFO={}
+            colaLIFO=[]
             with open('clientesLIFO.json') as file:
-                self._queue = json.load(file)
+                diccLIFO = json.load(file)
+                for item in diccLIFO:
+                    colaLIFO.append(diccLIFO[item])
+                for valor in reversed(colaLIFO):
+                    self._queue.append(valor)
+                #print(colaLIFO)
+                #print(self._queue)
                 print('\n Archivo CARGADO LIFO---> '+'clientesLIFO.json')
