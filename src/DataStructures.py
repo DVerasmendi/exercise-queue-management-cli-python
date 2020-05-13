@@ -14,7 +14,7 @@ class Queue:
     ################ ENCOLAR  ##########################
     def enqueue(self, item):
         self._queue.append(item)
-    
+        pass
     ################ DESENCOLAR  #######################
     def dequeue(self):
         try:
@@ -26,23 +26,15 @@ class Queue:
                 return cliente
         except:
             raise ValueError("La cola está vacía")
-
-    
-    ################ OBTENER COLA  ##########################
-    def get_queue(self):
         
+    ################ OBTENER COLA  ##########################
+    def get_queue(self):      
     ################ COLA-FIFO   ############################
         if "FIFO" in self._mode:
             return self._queue
         
     ################ COLA-LIFO   ############################
         elif "LIFO" in self._mode:
-            i=len(self._queue)-1
-            #colaLIFO=[]
-            # for item in range(len(self._queue)):
-            #     #print(self._queue[i])
-            #     colaLIFO.append(self._queue[i])
-            #     i=i-1
             colaLIFO=[]
             for item in reversed(self._queue):
                 colaLIFO.append(item)
@@ -52,7 +44,6 @@ class Queue:
         cola=self._queue
         cola_size=len(cola)
         return cola_size
-        pass
     ################ GUARDAR EN ARCHIVO JSON COLA ############
     def save_json(self):
         cola=self._queue
