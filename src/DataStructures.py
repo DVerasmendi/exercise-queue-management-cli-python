@@ -70,6 +70,7 @@ class Queue:
             with open('clientesLIFO.json', 'w') as file:
                 json.dump(diccLIFO, file, indent=1)
             print('\n Archivo creado ---> '+'clientesLIFO.json')
+            
     ################ LEER ARCHIVO JSON E INCORPORAR COLA  ######
     def load_json(self):
         if "FIFO" in self._mode:
